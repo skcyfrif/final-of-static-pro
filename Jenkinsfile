@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "cyfrifprotech/frontend-app"
+        DOCKER_IMAGE = "cyfdoc/cyfrifprotech" // Use your Docker Hub username/repository
         TAG = "latest"
     }
 
@@ -13,40 +13,38 @@ pipeline {
                 checkout scm
             }
         }
-       stage('Build Docker Image') {
-    steps {
-        script {
-            // Navigate to the 'cyfrif_pro' directory
-            dir('cyfrif_pro') {
-                // Check if the Dockerfile exists in the 'cyfrif_pro' directory
-                if (!fileExists('Dockerfile')) {
-                    error "Dockerfile not found in the 'cyfrif_pro' directory!"
-                }
+        
+        stage('Build or Pull Docker Image') {
+			steps {
+				sh '''
+                docker images -q ${DOCKER_IMAGE}:${TAG} && docker pull ${DOCKER_IMAGE}:${TAG} || docker build -t ${DOCKER_IMAGE}:${TAG} .
+                '''
+			}
+		}
 
-                // Build the Docker image using the Dockerfile in 'cyfrif_pro'
-                docker.build("${IMAGE_NAME}:${TAG}", ".")
-            }
-        }
-    }
-}
-
-        stage('Push Docker Image') {
+        stage('Push to Docker Hub') {
             steps {
-                script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials') {
-                        docker.image("${IMAGE_NAME}:${TAG}").push()
-                    }
+                echo 'Pushing Docker Image to Docker Hub...'
+                withCredentials([usernamePassword(credentialsId: 'sedooc', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh '''
+                        echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+                        docker push ${DOCKER_IMAGE}
+                    '''
                 }
             }
         }
+
         stage('Deploy Container') {
             steps {
                 script {
-                    // Remove the old container if it exists
-                    sh "docker rm -f frontend-app || true"
-
-                    // Run a new container with the updated image
-                    sh "docker run -d --name frontend-app -p 5555:80 -p 443:443 ${IMAGE_NAME}:${TAG}"
+                    // Check if a container with the specified name exists, then remove it
+					sh '''
+					if [ $(docker ps -aq -f name=cyfrifprotech) ]; then
+						docker stop cyfrifprotech
+						docker rm cyfrifprotech
+					fi
+					docker run -d --name cyfrifprotech -p 3134:80 ${DOCKER_IMAGE}:${TAG}
+					'''
                 }
             }
         }
