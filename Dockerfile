@@ -4,10 +4,8 @@ FROM nginx:alpine
 # Copy the static website files into the container
 COPY . /usr/share/nginx/html
 
-# (Ensure you have the correct path to your Certbot-generated certs)
-COPY ./etc/letsencrypt/live/cyfrifprotech.com/fullchain.pem /etc/nginx/ssl/fullchain.pem
-COPY ./etc/letsencrypt/live/cyfrifprotech.com/privkey.pem /etc/nginx/ssl/privkey.pem
-
+# Create the SSL directory inside the container
+RUN mkdir -p /etc/nginx/ssl
 
 # Copy the custom Nginx configuration file into the container
 COPY default.conf /etc/nginx/conf.d/default.conf
