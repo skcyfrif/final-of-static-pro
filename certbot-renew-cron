@@ -1,0 +1,2 @@
+# Run the Certbot renewal process at 3:30 AM every day
+30 3 * * * certbot renew --quiet && nginx -s reload
