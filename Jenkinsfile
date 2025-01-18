@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "cyfdoc/cyfrifprotech" // Use your Docker Hub username/repository
-        TAG = "latest"
+        TAG = "latest1"
     }
 
     stages {
