@@ -5,8 +5,8 @@ FROM nginx:alpine
 COPY . /usr/share/nginx/html
 
 # (Ensure you have the correct path to your Certbot-generated certs)
-COPY /etc/letsencrypt/live/cyfrifprotech.com/fullchain.pem /etc/nginx/ssl/fullchain.pem
-COPY /etc/letsencrypt/live/cyfrifprotech.com/privkey.pem /etc/nginx/ssl/privkey.pem
+COPY ./etc/letsencrypt/live/cyfrifprotech.com/fullchain.pem /etc/nginx/ssl/fullchain.pem
+COPY ./etc/letsencrypt/live/cyfrifprotech.com/privkey.pem /etc/nginx/ssl/privkey.pem
 
 
 # Copy the custom Nginx configuration file into the container
