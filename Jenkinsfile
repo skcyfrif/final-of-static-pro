@@ -43,7 +43,7 @@ pipeline {
 						docker stop cyfrifprotech
 						docker rm cyfrifprotech
 					fi
-					docker run -d --name cyfrifprotech -p 3134:80 ${DOCKER_IMAGE}:${TAG}
+					docker run -d --name cyfrifprotech -p 1000:1000 ${DOCKER_IMAGE}:${TAG}
 					'''
                 }
             }
