@@ -49,7 +49,7 @@ pipeline {
                         fi
                         
                         echo "Deploying the new container..."
-                        docker run -d --name cyfrifprotech -p 1000:1000 -p 10443:10443 \
+                        docker run -d --name cyfrifprotech -p 1000:1000 \
                             ${DOCKER_IMAGE}:${TAG}
                     '''
                 }
