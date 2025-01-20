@@ -44,8 +44,7 @@ pipeline {
                         docker rm cyfrifprotech
                     fi
                     docker run -d --name cyfrifprotech -p 1000:1000 \
-                        -v /etc/letsencrypt/live/cyfrifprotech.com/fullchain.pem:/etc/nginx/ssl/fullchain.pem \
-                        -v /etc/letsencrypt/live/cyfrifprotech.com/privkey.pem:/etc/nginx/ssl/privkey.pem \
+                       
                         ${DOCKER_IMAGE}:${TAG}
                     '''
                 }
