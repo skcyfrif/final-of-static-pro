@@ -1,19 +1,24 @@
-# Ensure you're running as root
+# Use the official Nginx image
+FROM nginx:alpine
+
+# Switch to root user
 USER root
 
-# Create the SSL directory
+# Create the SSL directory inside the container
 RUN mkdir -p /etc/nginx/ssl
 
 # Copy SSL certificates into the container
 COPY ./fullchain.pem /etc/nginx/ssl/fullchain.pem
 COPY ./privkey.pem /etc/nginx/ssl/privkey.pem
 
-# Expose necessary ports
-EXPOSE 1000 10443
-
-# Copy static website files and nginx configuration
+# Copy static website files into the container
 COPY . /usr/share/nginx/html
+
+# Copy custom Nginx configuration into the container
 COPY default.conf /etc/nginx/conf.d/default.conf
 
-# Start nginx
+# Expose the ports you want to use
+EXPOSE 1000 10443
+
+# The default command to run Nginx
 CMD ["nginx", "-g", "daemon off;"]
