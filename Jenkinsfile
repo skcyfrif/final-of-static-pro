@@ -34,17 +34,16 @@ pipeline {
             }
         }
 
+        stages {
         stage('Deploy Container') {
             steps {
                 script {
-                    // Check if a container with the specified name exists, then remove it
                     sh '''
                     if [ $(docker ps -aq -f name=cyfrifprotech) ]; then
                         docker stop cyfrifprotech
                         docker rm cyfrifprotech
                     fi
                     docker run -d --name cyfrifprotech -p 1000:1000 \
-                       
                         ${DOCKER_IMAGE}:${TAG}
                     '''
                 }
