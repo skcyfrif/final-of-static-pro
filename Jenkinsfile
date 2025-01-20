@@ -23,7 +23,7 @@ pipeline {
                             docker pull ${DOCKER_IMAGE}:${TAG}
                         else
                             echo "Image does not exist, building locally..."
-                            docker build -t ${DOCKER_IMAGE}:${TAG} .
+                            docker build --no-cache -t ${DOCKER_IMAGE}:${TAG} .
                         fi
                     '''
                 }
