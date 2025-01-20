@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "cyfdoc/cyfrifprotech" // Replace with your Docker Hub repository
+        DOCKER_IMAGE = "cyfdoc/techlive" // Replace with your Docker Hub repository
         TAG = "latest"
     }
 
