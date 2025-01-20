@@ -14,17 +14,12 @@ pipeline {
             }
         }
 
-        stage('Build or Pull Docker Image') {
+        stage('Build Docker Image') {
             steps {
                 script {
                     sh '''
-                        if docker images -q ${DOCKER_IMAGE}:${TAG} > /dev/null 2>&1; then
-                            echo "Image exists locally, pulling the latest version..."
-                            docker pull ${DOCKER_IMAGE}:${TAG}
-                        else
-                            echo "Image does not exist, building locally..."
-                            docker build --no-cache -t ${DOCKER_IMAGE}:${TAG} .
-                        fi
+                        echo "Building Docker Image locally..."
+                        docker build --no-cache -t ${DOCKER_IMAGE}:${TAG} .
                     '''
                 }
             }
