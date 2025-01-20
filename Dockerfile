@@ -10,8 +10,8 @@ RUN mkdir -p /etc/nginx/ssl
 # Copy the custom Nginx configuration file into the container
 COPY default.conf /etc/nginx/conf.d/default.conf
 
-# Expose the port you want to use
-EXPOSE 1000
+# Expose the custom ports
+EXPOSE 1000 10443
 
 # The default command to run Nginx
 CMD ["nginx", "-g", "daemon off;"]
