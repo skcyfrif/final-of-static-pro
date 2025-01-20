@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "cyfdoc/cyfrifprotech" // Use your Docker Hub username/repository
+        DOCKER_IMAGE = "cyfdoc/cyfrifprotech" // Replace with your Docker Hub repository
         TAG = "latest"
     }
 
@@ -16,9 +16,17 @@ pipeline {
 
         stage('Build or Pull Docker Image') {
             steps {
-                sh '''
-                    docker images -q ${DOCKER_IMAGE}:${TAG} && docker pull ${DOCKER_IMAGE}:${TAG} || docker build -t ${DOCKER_IMAGE}:${TAG} .
-                '''
+                script {
+                    sh '''
+                        if docker images -q ${DOCKER_IMAGE}:${TAG} > /dev/null 2>&1; then
+                            echo "Image exists locally, pulling the latest version..."
+                            docker pull ${DOCKER_IMAGE}:${TAG}
+                        else
+                            echo "Image does not exist, building locally..."
+                            docker build -t ${DOCKER_IMAGE}:${TAG} .
+                        fi
+                    '''
+                }
             }
         }
 
@@ -28,23 +36,26 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'cyfdoc', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh '''
                         echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-                        docker push ${DOCKER_IMAGE}
+                        docker push ${DOCKER_IMAGE}:${TAG}
                     '''
                 }
             }
         }
 
-        stages {
         stage('Deploy Container') {
             steps {
                 script {
                     sh '''
-                    if [ $(docker ps -aq -f name=cyfrifprotech) ]; then
-                        docker stop cyfrifprotech
-                        docker rm cyfrifprotech
-                    fi
-                    docker run -d --name cyfrifprotech -p 1000:1000 \
-                        ${DOCKER_IMAGE}:${TAG}
+                        # Check if the container already exists
+                        if [ $(docker ps -aq -f name=cyfrifprotech) ]; then
+                            echo "Stopping and removing the existing container..."
+                            docker stop cyfrifprotech
+                            docker rm cyfrifprotech
+                        fi
+                        
+                        echo "Deploying the new container..."
+                        docker run -d --name cyfrifprotech -p 1000:1000 \
+                            ${DOCKER_IMAGE}:${TAG}
                     '''
                 }
             }
