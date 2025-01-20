@@ -9,8 +9,8 @@ RUN mkdir -p /etc/nginx/ssl
 RUN ls -ld /etc/nginx/ssl
 
 # Copy SSL certificates into the container
-COPY ./fullchain.pem /etc/nginx/ssl/fullchain.pem
-COPY ./privkey.pem /etc/nginx/ssl/privkey.pem
+COPY fullchain.pem /etc/nginx/ssl/fullchain.pem
+COPY privkey.pem /etc/nginx/ssl/privkey.pem
 
 # Copy static website files into the container
 COPY . /usr/share/nginx/html
