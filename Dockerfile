@@ -16,7 +16,7 @@ COPY ./privkey.pem /etc/nginx/ssl/privkey.pem
 COPY . /usr/share/nginx/html
 
 # Copy custom Nginx configuration into the container
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY mysite.conf /etc/nginx/conf.d/
 
 # Expose the ports you want to use
 EXPOSE 1000 10443
