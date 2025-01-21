@@ -27,13 +27,16 @@ pipeline {
         stage('Check SSL Certificates') {
             steps {
                 script {
-                    def certExists = sh(script: "[ -f \"${SSL_CERT_PATH}\" ] && [ -f \"${SSL_KEY_PATH}\" ]", returnStatus: true) == 0
+                    // Check the existence of SSL certificates by running ls directly
+                    def certExists = sh(script: "ls -l ${SSL_CERT_PATH} && ls -l ${SSL_KEY_PATH}", returnStatus: true) == 0
                     if (!certExists) {
                         echo 'SSL certificates not found. Installing Certbot and generating certificates...'
+                        // Install Certbot and generate certificates
                         sh 'sudo apt-get install -y certbot python3-certbot-nginx'
                         sh "sudo certbot --nginx -d cyfrifprotech.com -d www.cyfrifprotech.com --agree-tos --non-interactive --email admin@cyfrifprotech.com"
                     } else {
                         echo 'SSL certificates already exist.'
+                        // Log the files in the directory to ensure certificates are found
                         sh "ls -l /etc/letsencrypt/live/cyfrifprotech.com"
                     }
                 }
