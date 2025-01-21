@@ -26,20 +26,7 @@ pipeline {
 
         stage('Check SSL Certificates') {
             steps {
-                script {
-                    // Granting Jenkins permission to access SSL certificates
-                    echo "Granting Jenkins user permission to access SSL certificates"
-                    sh '''
-                        sudo chmod -R 755 /etc/letsencrypt
-                        sudo chown -R jenkins:jenkins /etc/letsencrypt
-                    '''
-                    
-                    // Allowing Jenkins to use sudo without a password
-                    echo "Allowing Jenkins user to use sudo without a password"
-                    sh '''
-                        echo "jenkins ALL=(ALL) NOPASSWD: /usr/bin/apt-get, /usr/bin/certbot" | sudo tee -a /etc/sudoers
-                    '''
-                    
+                script {                  
                     // Check if SSL certificates exist using fileExists
                     if (!fileExists(SSL_CERT_PATH) || !fileExists(SSL_KEY_PATH)) {
                         echo 'SSL certificates not found, installing...'
