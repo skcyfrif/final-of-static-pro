@@ -28,7 +28,10 @@ pipeline {
         stage('Download Code from GitHub') {
             steps {
                 script {
-                    echo 'Cloning repository.......'
+
+                    echo 'Cloning repository........'
+
+
 
                     // Clone the GitHub repository into the cleaned directory
                     sh '''
