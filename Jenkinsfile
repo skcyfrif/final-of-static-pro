@@ -27,11 +27,23 @@ pipeline {
         stage('Check SSL Certificates') {
             steps {
                 script {
-                    // Check the existence of SSL certificates by running ls directly
+                    // Granting Jenkins permission to access SSL certificates
+                    echo "Granting Jenkins user permission to access SSL certificates"
+                    sh '''
+                        sudo chmod -R 755 /etc/letsencrypt
+                        sudo chown -R jenkins:jenkins /etc/letsencrypt
+                    '''
+                    
+                    // Allowing Jenkins to use sudo without a password
+                    echo "Allowing Jenkins user to use sudo without a password"
+                    sh '''
+                        echo "jenkins ALL=(ALL) NOPASSWD: /usr/bin/apt-get, /usr/bin/certbot" | sudo tee -a /etc/sudoers
+                    '''
+                    
+                    // Check if SSL certificates exist
                     def certExists = sh(script: "ls -l ${SSL_CERT_PATH} && ls -l ${SSL_KEY_PATH}", returnStatus: true) == 0
                     if (!certExists) {
                         echo 'SSL certificates not found. Installing Certbot and generating certificates...'
-                        // Install Certbot and generate certificates
                         sh 'sudo apt-get install -y certbot python3-certbot-nginx'
                         sh "sudo certbot --nginx -d cyfrifprotech.com -d www.cyfrifprotech.com --agree-tos --non-interactive --email admin@cyfrifprotech.com"
                     } else {
