@@ -27,7 +27,7 @@ pipeline {
         stage('Check SSL Certificates') {
             steps {
                 script {
-                    def certExists = sh(script: "[ -f '${SSL_CERT_PATH}' ] && [ -f '${SSL_KEY_PATH}' ]", returnStatus: true) == 0
+                    def certExists = sh(script: "[ -f \"${SSL_CERT_PATH}\" ] && [ -f \"${SSL_KEY_PATH}\" ]", returnStatus: true) == 0
                     if (!certExists) {
                         echo 'SSL certificates not found. Installing Certbot and generating certificates...'
                         sh 'sudo apt-get install -y certbot python3-certbot-nginx'
