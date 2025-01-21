@@ -1,4 +1,4 @@
-# Use the official Nginx image
+# Use the official Nginx imageeee
 FROM nginx:alpine
 
 # Switch to root user
