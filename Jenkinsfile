@@ -40,21 +40,6 @@ pipeline {
             }
         }
 
-        stage('Set Permissions') {
-            steps {
-                script {
-                    echo 'Setting permissions...'
-
-                    // Set proper permissions for the application directory
-                    sh '''
-                        sudo chown -R www-data:www-data ${APP_DIR}
-                        sudo chmod -R 775 ${APP_DIR}
-                        echo "Permissions set successfully."
-                    '''
-                }
-            }
-        }
-
         stage('Reload and Restart Nginx') {
             steps {
                 script {
@@ -74,10 +59,10 @@ pipeline {
 
     post {
         success {
-            echo 'Pipeline completed successfully. Application is live!'
+            echo 'Deployment pipeline completed successfully.'
         }
         failure {
-            echo 'Pipeline failed. Check the logs for details.'
+            echo 'Deployment pipeline failed. Please check the logs for more details.'
         }
     }
 }
