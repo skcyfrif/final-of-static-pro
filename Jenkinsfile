@@ -47,7 +47,7 @@ pipeline {
                     
                     // Clone the repository into the app directory
                     dir('/var/www/app') {
-                        git branch: 'main', url: "https://github.com/skcyfrif/final-of-static-pro.git"
+                        checkout scm
                     }
                 }
             }
