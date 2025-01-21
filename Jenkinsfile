@@ -40,8 +40,8 @@ pipeline {
                         echo "jenkins ALL=(ALL) NOPASSWD: /usr/bin/apt-get, /usr/bin/certbot" | sudo tee -a /etc/sudoers
                     '''
                     
-                    // Check if SSL certificates exist
-                    def certExists = sh(script: "ls -l ${SSL_CERT_PATH} && ls -l ${SSL_KEY_PATH}", returnStatus: true) == 0
+                    // Check if SSL certificates exist using fileExists
+                    def certExists = fileExists(SSL_CERT_PATH) && fileExists(SSL_KEY_PATH)
                     if (!certExists) {
                         echo 'SSL certificates not found. Installing Certbot and generating certificates...'
                         sh 'sudo apt-get install -y certbot python3-certbot-nginx'
@@ -138,4 +138,3 @@ pipeline {
         }
     }
 }
-
