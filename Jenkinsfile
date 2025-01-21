@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        APP_DIR = "/var/www/app"
+        APP_DIR = "/var/www/myapp"
         REPO_URL = "https://github.com/skcyfrif/final-of-static-pro.git"
     }
 
