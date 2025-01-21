@@ -1,7 +1,7 @@
 # Use the official Nginx imageeee
 FROM nginx:alpine
 
-# Switch to root user
+# Switch to root userjjj
 USER root
 
 # Create the SSL directory inside the container
