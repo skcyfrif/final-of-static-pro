@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        APP_DIR = "/var/www/app"                         // Directory where the app will be deployed
+        APP_DIR = "/var/www/app"
         SSL_CERT_PATH = "/etc/letsencrypt/live/cyfrifprotech.com/fullchain.pem"
         SSL_KEY_PATH = "/etc/letsencrypt/live/cyfrifprotech.com/privkey.pem"
         NGINX_SITE_CONFIG = "/etc/nginx/sites-available/cyfrifprotech.com"
@@ -27,13 +27,14 @@ pipeline {
         stage('Check SSL Certificates') {
             steps {
                 script {
-                    def sslCertExists = fileExists(SSL_CERT_PATH) && fileExists(SSL_KEY_PATH)
-                    if (!sslCertExists) {
+                    def certExists = sh(script: "[ -f '${SSL_CERT_PATH}' ] && [ -f '${SSL_KEY_PATH}' ]", returnStatus: true) == 0
+                    if (!certExists) {
                         echo 'SSL certificates not found. Installing Certbot and generating certificates...'
                         sh 'sudo apt-get install -y certbot python3-certbot-nginx'
                         sh "sudo certbot --nginx -d cyfrifprotech.com -d www.cyfrifprotech.com --agree-tos --non-interactive --email admin@cyfrifprotech.com"
                     } else {
                         echo 'SSL certificates already exist.'
+                        sh "ls -l /etc/letsencrypt/live/cyfrifprotech.com"
                     }
                 }
             }
@@ -42,11 +43,8 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 script {
-                    // Create app directory if not exists
-                    sh "sudo mkdir -p /var/www/app"
-                    
-                    // Clone the repository into the app directory
-                    dir('/var/www/app') {
+                    sh "sudo mkdir -p ${APP_DIR}"
+                    dir(APP_DIR) {
                         checkout scm
                     }
                 }
@@ -56,8 +54,8 @@ pipeline {
         stage('Set Permissions') {
             steps {
                 script {
-                    sh "sudo chown -R www-data:www-data /var/www/app"
-                    sh "sudo chmod -R 755 /var/www/app"
+                    sh "sudo chown -R www-data:www-data ${APP_DIR}"
+                    sh "sudo chmod -R 755 ${APP_DIR}"
                 }
             }
         }
@@ -125,3 +123,4 @@ pipeline {
         }
     }
 }
+
