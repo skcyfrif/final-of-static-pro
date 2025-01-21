@@ -2,40 +2,16 @@ pipeline {
     agent any
 
     environment {
-        APP_DIR = "/var/www/app"
-        SSL_CERT_PATH = "/etc/letsencrypt/live/cyfrifprotech.com/fullchain.pem"
-        SSL_KEY_PATH = "/etc/letsencrypt/live/cyfrifprotech.com/privkey.pem"
-        NGINX_SITE_CONFIG = "/etc/nginx/sites-available/cyfrifprotech.com"
-        NGINX_ENABLED_SITE = "/etc/nginx/sites-enabled/cyfrifprotech.com"
+        APP_DIR = "/var/www/app"  // Directory where the app will be deployed
     }
 
     stages {
-        stage('Check Nginx Installation') {
+        stage('Clean Old Application Files') {
             steps {
                 script {
-                    def nginxInstalled = sh(script: 'which nginx', returnStatus: true) == 0
-                    if (!nginxInstalled) {
-                        echo 'Nginx not found. Installing...'
-                        sh 'sudo apt-get update -y && sudo apt-get install -y nginx'
-                    } else {
-                        echo 'Nginx is already installed.'
-                    }
-                }
-            }
-        }
-
-        stage('Check SSL Certificates') {
-            steps {
-                script {                  
-                    // Check if SSL certificates exist using fileExists
-                    if (!fileExists(SSL_CERT_PATH) || !fileExists(SSL_KEY_PATH)) {
-                        echo 'SSL certificates not found, installing...'
-                        sh 'sudo apt-get install -y certbot python3-certbot-nginx && sudo certbot --nginx -d cyfrifprotech.com -d www.cyfrifprotech.com --agree-tos --non-interactive --email admin@cyfrifprotech.com'
-                    } else {
-                        echo 'SSL certificates already exist.'
-                        // Log the files in the directory to ensure certificates are found
-                        sh "ls -l /etc/letsencrypt/live/cyfrifprotech.com"
-                    }
+                    // Remove old application files in the target directory
+                    echo 'Removing old application files...'
+                    sh 'sudo rm -rf ${APP_DIR}/*'
                 }
             }
         }
@@ -43,7 +19,8 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 script {
-                    sh "sudo mkdir -p ${APP_DIR}"
+                    // Clone the repository into the app directory
+                    echo 'Cloning the repository...'
                     dir(APP_DIR) {
                         checkout scm
                     }
@@ -54,60 +31,34 @@ pipeline {
         stage('Set Permissions') {
             steps {
                 script {
+                    // Set the right permissions for the app directory
+                    echo 'Setting permissions for the application files...'
                     sh "sudo chown -R www-data:www-data ${APP_DIR}"
                     sh "sudo chmod -R 755 ${APP_DIR}"
                 }
             }
         }
 
-        stage('Configure Nginx for SSL') {
+        stage('Reload and Restart Nginx') {
             steps {
                 script {
-                    if (!fileExists(NGINX_SITE_CONFIG)) {
-                        echo 'Creating Nginx configuration...'
-                        sh """
-                            sudo bash -c 'cat > ${NGINX_SITE_CONFIG} <<EOF
-                            server {
-                                listen 443 ssl;
-                                server_name cyfrifprotech.com www.cyfrifprotech.com;
-
-                                location / {
-                                    root ${APP_DIR};
-                                    index index.html;
-                                    try_files \$uri \$uri/ =404;
-                                }
-
-                                ssl_certificate ${SSL_CERT_PATH};
-                                ssl_certificate_key ${SSL_KEY_PATH};
-                                include /etc/letsencrypt/options-ssl-nginx.conf;
-                                ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
-                            }
-
-                            server {
-                                listen 80;
-                                server_name cyfrifprotech.com www.cyfrifprotech.com;
-
-                                return 301 https://\$host\$request_uri;
-                            }
-                            EOF'
-                        """
-                        sh "sudo ln -s ${NGINX_SITE_CONFIG} ${NGINX_ENABLED_SITE} || true"
-                        sh "sudo nginx -t"
-                        sh "sudo systemctl reload nginx"
-                    } else {
-                        echo 'Nginx configuration already exists.'
-                    }
+                    echo 'Reloading and restarting Nginx...'
+                    sh 'sudo nginx -t'  // Test the Nginx configuration
+                    sh 'sudo systemctl reload nginx'  // Reload Nginx
+                    sh 'sudo systemctl restart nginx'  // Restart Nginx to ensure changes take effect
                 }
             }
         }
 
-        stage('Verify SSL Deployment') {
+        stage('Verify Deployment') {
             steps {
                 script {
+                    // Verify that the site is being served over HTTPS
                     try {
+                        echo 'Verifying deployment...'
                         sh "curl -I https://cyfrifprotech.com"
                     } catch (Exception e) {
-                        error "SSL deployment verification failed: ${e.message}"
+                        error "Deployment verification failed: ${e.message}"
                     }
                 }
             }
