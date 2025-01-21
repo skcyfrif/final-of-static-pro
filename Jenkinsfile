@@ -10,7 +10,7 @@ pipeline {
         stage('Prepare Deployment Directory') {
             steps {
                 script {
-                    echo 'Preparing deployment directory...'
+                    echo 'Preparing deployment directory........'
 
                     // Ensure the application directory is fully cleared
                     sh '''
