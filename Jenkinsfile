@@ -41,11 +41,9 @@ pipeline {
                     '''
                     
                     // Check if SSL certificates exist using fileExists
-                    def certExists = fileExists(SSL_CERT_PATH) && fileExists(SSL_KEY_PATH)
-                    if (!certExists) {
-                        echo 'SSL certificates not found. Installing Certbot and generating certificates...'
-                        sh 'sudo apt-get install -y certbot python3-certbot-nginx'
-                        sh "sudo certbot --nginx -d cyfrifprotech.com -d www.cyfrifprotech.com --agree-tos --non-interactive --email admin@cyfrifprotech.com"
+                    if (!fileExists(SSL_CERT_PATH) || !fileExists(SSL_KEY_PATH)) {
+                        echo 'SSL certificates not found, installing...'
+                        sh 'sudo apt-get install -y certbot python3-certbot-nginx && sudo certbot --nginx -d cyfrifprotech.com -d www.cyfrifprotech.com --agree-tos --non-interactive --email admin@cyfrifprotech.com'
                     } else {
                         echo 'SSL certificates already exist.'
                         // Log the files in the directory to ensure certificates are found
