@@ -2,10 +2,22 @@ pipeline {
     agent any
 
     environment {
-        APP_DIR = "/var/www/app"  // Directory where the app will be deployed
+        APP_DIR = "/var/www/app"
     }
 
     stages {
+        stage('Grant Sudo Permissions to Jenkins') {
+            steps {
+                script {
+                    // Grant Jenkins user sudo access to the required commands without a password
+                    echo 'Granting Jenkins user passwordless sudo access for specific commands...'
+                    sh '''
+                        echo "jenkins ALL=(ALL) NOPASSWD: /bin/rm, /usr/sbin/nginx, /usr/bin/systemctl, /bin/chmod, /bin/chown" | sudo tee -a /etc/sudoers > /dev/null
+                    '''
+                }
+            }
+        }
+
         stage('Clean Old Application Files') {
             steps {
                 script {
