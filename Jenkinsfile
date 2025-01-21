@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         APP_DIR = "/var/www/app"
-        REPO_URL = "https://github.com/skcyfrif/final-of-static-pro.git"  // Your GitHub repository URL
+        REPO_URL = "https://github.com/skcyfrif/final-of-static-pro.git"
     }
 
     stages {
@@ -12,15 +12,14 @@ pipeline {
                 script {
                     echo 'Preparing deployment directory...'
 
-                    // Ensure the application directory exists and clean it
+                    // Ensure the application directory is fully cleared
                     sh '''
                         if [ -d "${APP_DIR}" ]; then
-                            sudo rm -rf ${APP_DIR}/*
-                            echo "Old application files removed successfully."
-                        else
-                            echo "Directory ${APP_DIR} does not exist. Creating it..."
-                            sudo mkdir -p ${APP_DIR}
+                            sudo rm -rf ${APP_DIR}
+                            echo "Old application directory removed."
                         fi
+                        sudo mkdir -p ${APP_DIR}
+                        echo "New application directory created."
                     '''
                 }
             }
@@ -31,7 +30,7 @@ pipeline {
                 script {
                     echo 'Cloning repository...'
 
-                    // Clone the GitHub repository into the target directory
+                    // Clone the GitHub repository into the cleaned directory
                     sh '''
                         sudo git clone ${REPO_URL} ${APP_DIR}
                         echo "Repository cloned successfully."
@@ -45,7 +44,7 @@ pipeline {
                 script {
                     echo 'Reloading and restarting Nginx...'
 
-                    // Reload and restart Nginx to serve the updated application
+                    // Reload and restart Nginx
                     sh '''
                         sudo nginx -t
                         sudo systemctl reload nginx
