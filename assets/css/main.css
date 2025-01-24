@@ -4643,7 +4643,7 @@ textarea {
 .experience-year .content .circle {
   position: absolute;
   margin-bottom: 0;
-  font-size: 15px;
+  font-size: 14px;
   text-transform: uppercase;
   left: 50%;
   top: 50%;
@@ -16760,6 +16760,20 @@ a:hover{
       width: calc(33.33% - 20px);
   }
 }
+.services-content p {
+  text-align: justify;
+  word-spacing: -1px;
 
+}
+.cygrif_pro_what_provid_card .pro_what_provid_card .services-item p:first-of-type {
+  margin-bottom: 49px !important;
+}
+
+.cygrif_pro_what_provid_card .pro_what_provid_card .services-item p:nth-of-type(2) {
+  margin-bottom: 23px !;
+}
+.cygrif_pro_what_provid_card .pro_what_provid_card .services-item p:nth-of-type(2) {
+  margin-bottom: 10px;
+}
 
 
