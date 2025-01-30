@@ -16070,7 +16070,7 @@ display: inline-block;
 width: 100%;
 }
 .contact-info-text span:hover {
-  color: #5e5e5e;
+  color: #000000 !important;
 
 }
 .sg_contact-info-item:hover {
