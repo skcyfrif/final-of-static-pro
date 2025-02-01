@@ -136,24 +136,122 @@
     .footer-top {
         padding: 60px 0 23px;
     }
-
-    
-  	
+    .tgmenu__action ul { 
+        margin-left: 0px !important; 
+    }
+    .tgmenu__navbar-wrap > ul {
+        margin: 0 0 0 25px;
+    }
+    .tgmenu__action ul li {
+        position: relative;
+        margin-left: 15px;
+    }
+    .tgmenu__action ul .offCanvas-menu .menu-tigger {
+        width: 44px;
+        height: 44px;
+    }
+    .tgmenu__nav .logo img {
+        max-height: 60px;
+    }
+    .services-bg {
+        padding: 70px 0;
+    }
+    .cyf_pro_tech_caunter {
+        width: 20%;
+    }
+    .counter-item .icon {
+        font-size: 45px;
+    }
+    .counter-item .content .count {
+        font-size: 32px;
+    }
+    .cyfrif_team_sect {
+        padding-top: 70px;
+    } 	
 }
 
 
 
 @media  only screen and (max-width: 1080px) {
+    .about-area {
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+    .request-content .title {
+        font-size: 30px;
+    }
+    .section-title .title {
+        font-size: 28px;
+    }
+    .blog-post-content .title {
+        font-size: 20px;
+    }
+}
+
+
 	
     
-}
+
 @media  only screen and (max-width: 1024px) {
-	
+    .tg-header__top-right li:nth-child(2) {
+        display: none;
+    }
+    .marketing_card_cyftech {
+        width: 32%;
+    }
+    .blog-post-item {
+        padding: 15px;
+    }
+    .blog-post-content .title {
+        font-size: 17px;
+    }
+    .btn {
+        font-size: 14px !important;
+        padding: 12px 14px !important;
+    }
+    .footer-content p {
+        width: 100%;
+    }
+    	
 }
 @media  only screen and (max-width: 991px) {
-	
+    .cyfrife_top_search_icon {
+        display: none !important;
+    }
+    .banner-bg {
+        min-height: 415px !important;
+        padding: 82px 0 55px;
+    }
+    .marketing_card_cyftech {
+        width: 50%;
+    }
+    .project-shape-wrap img:nth-child(2) {
+        right: 9%;
+        top: 9%;
+    }
+    .cyf_pro_tech_smallmenu {
+        display: block;
+    }
+    .tg-header__area {
+        padding: 10px 0;
+    }
+    .cfp_header_contact {
+        width: 44%;
+    }
+    .cyfrif_tech_service_mail {
+        display: none;
+    }
+    .banner-bg {
+        margin-top: 100px;
+    }
 }
+	
+
 @media  only screen and (max-width: 767px) {
+    .cyf_pro_tech_caunter  {
+        width: 50%;
+    }
+    
 	
 }
 @media  only screen and (max-width: 600px) {
