@@ -21,14 +21,14 @@
     .banner-content h2 {
         font-size: 40px !important;
     }
-    .btn {
+    /* .btn {
         font-size: 14px !important;
         padding: 14px 16px !important;
     }
     .btn::after {
         font-size: 18px;
 
-    }
+    } */
     .project-content .title {
         font-size: 20px;
     }
@@ -244,6 +244,9 @@
     .banner-bg {
         margin-top: 100px;
     }
+    .cyf_pro_tech_smallmenu {
+        margin-right: 0px !important; 
+    }
 }
 	
 
@@ -251,16 +254,44 @@
     .cyf_pro_tech_caunter  {
         width: 50%;
     }
+    .marketing_card_cyftech {
+        width: 100%;
+    }
     
 	
 }
 @media  only screen and (max-width: 600px) {
 	
 }
-@media  only screen and (max-width: 520px) {
+@media only screen and (max-width: 520px) {
+    .services-content .icon {
+        width: 60px;
+        height: 60px;
+    }
 
+    .marketing_card_cyftech {
+        width: 100%;
+    }
+
+    .call-back-area {
+        padding: 66px 0 65px;
+    }
+
+    .banner-bg {
+        min-height: 236px !important;
+        padding: 12px 0 12px !important;
+    }
+    .cyf_pro_tech_smallmenu {
+        margin-right: 0px !important; 
+    }
+    .blog-post-bg {
+        padding: 50px 0 20px;
+    }
 }
 @media  only screen and (max-width: 420px) {
+    .banner-content p {
+        margin-bottom: 15px;
+    }
 	
 }
 @media  only screen and (max-width: 380px){

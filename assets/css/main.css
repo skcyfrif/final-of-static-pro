@@ -15739,12 +15739,11 @@ blockquote p {
 .wheel {
   --inner-offset: clamp(2rem, 3vw, 3rem); /* Offset for after pseudo-element */
   --title-offset: -40px;
-  
   list-style: none;
   margin: 0;
   padding: 0;
   position: relative;
-  width: min(calc(100% - 2rem), 500px);
+  width: min(calc(100%), 500px);
   aspect-ratio: 1;
 }
 
