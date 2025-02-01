@@ -292,10 +292,43 @@
     .banner-content p {
         margin-bottom: 15px;
     }
-	
+    .banner-content h2 {
+        font-size: 24px !important;
+    }
+    .banner-content .title {
+        margin-bottom: 8px; 
+    }
+    .banner-content .sub-title {
+        margin-bottom: 12px;
+    }
+    .section-title .title {
+        font-size: 24px;
+    }
+    .services-bg {
+        padding: 45px 0;
+    }
+    .section-title .sub-title {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+    .about-bottom {
+        gap: 20px;
+    }	
+    .about-area {
+        padding-top: 10px;
+        padding-bottom: 30px;
+    }
+    .counter-area {
+        padding: 30px 0 15px !important;
+    }
+    .team-area {
+        padding: 45px 0 30px;
+    }
 }
 @media  only screen and (max-width: 380px){
-	
+	.services-bottom-content {
+        margin-top: 5px;
+    }
 }
 @media  only screen and (max-width: 360px) {
 	
