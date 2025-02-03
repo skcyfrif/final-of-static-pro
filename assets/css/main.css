@@ -16788,6 +16788,9 @@ a:hover{
   align-items: center;
   flex-wrap: wrap;
 }
+.breadcrumb__area  {
+  height: 225px;
+}
 
 
 

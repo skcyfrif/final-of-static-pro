@@ -593,6 +593,10 @@
     .services-bottom-content {
         margin-top: 5px;
     }
+    .services__details-area {
+        padding: 28px 0 !important;
+    }
+
 }
 
 @media only screen and (max-width: 360px) {}
