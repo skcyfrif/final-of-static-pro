@@ -526,6 +526,9 @@
         width: 22px;
         height: 22px;
     }
+    .sg_about_us {
+        display: none;
+    }
 
 
 }
