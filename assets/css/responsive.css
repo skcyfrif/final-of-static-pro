@@ -14,6 +14,9 @@
     .sg_about_us {
         padding-top: 80px;
     }
+    .sg_contact-page-sec {
+        padding-top: 3rem;
+    }
 
 
 }
@@ -261,6 +264,14 @@
         padding: 42px 0 32px;
 
     }
+    .contact-page-map iframe {
+        width: 300px;
+    }
+    .contact-page-map iframe {
+        width: 100%;
+        height: 365px;
+    }
+
 }
 
 
@@ -389,6 +400,18 @@
         padding: 50px 0;
        
     }
+    .office_time {
+        padding-bottom: 20px;
+    }
+    .sg_contact-info-item {
+        padding: 21px 0px;
+    }
+    .team__details-content  ul {
+            padding-left: 1rem;
+    }
+    .team__details-area {
+    padding: 70px 0;
+}
 }
 
 @media only screen and (max-width: 767px) {
@@ -435,9 +458,14 @@
     .services__details-area {
         padding: 18px 0;
     }
-    .section-title {
-        display: none;
+    .team__details-area {
+        padding: 50px 0!important;
     }
+    .team__details-img {
+        margin-bottom: 24px;
+    }
+
+   
 
 
 
@@ -465,7 +493,6 @@
         left: -17px;
     }
     
-
 }
 
 @media only screen and (max-width: 520px) {
@@ -546,10 +573,10 @@
         width: 22px;
         height: 22px;
     }
-    .sg_about_us {
-        display: none;
+    .team__details-content .title {
+        font-size: 28px;
     }
-
+    
 
 }
 
@@ -679,6 +706,9 @@
     .cfp_flexible_tittle {
             margin-top: 39px;
     }
+    .cfp_Testimonials_sec_body .footer {
+        padding: 10px 0 1.4rem 0;
+    }
  
 
 
@@ -697,6 +727,19 @@
     .services__details-area {
         padding: 28px 0 !important;
     }
+    .cfp_Testimonials_sec {
+        padding-top: 50px;
+    }
+    .cfp_Testimonials_sec_body .card-text {
+        padding: 1rem 1rem;
+    }
+    .cfp_Testimonials_sec_body .footer {
+        padding: 10px 0 10px 0;
+    }
+    .cfp_Testimonials_sec {
+        padding-top: 36px;
+    }
+
 
 }
 
