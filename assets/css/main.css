@@ -897,7 +897,6 @@ textarea {
 .breadcrumb__bg {
   background-size: cover;
   background-position: center;
-  padding: 45px 0 47px;
   position: relative;
   z-index: 1;
   padding: 70px 0 70px;
@@ -14030,7 +14029,9 @@ blockquote p {
 .footer__area-six .copyright-text-two p {
   text-align: left;
 }
-
+.sg_about_us {
+  padding-top: 120px;
+}
 .text-stroke {
   color: var(--tg-color-dark-blue);
   text-shadow: 1px 1px 0 var(--tg-color-white-default), -1px -1px 0 var(--tg-color-white-default), 1px -1px 0 var(--tg-color-white-default), -1px 1px 0 var(--tg-color-white-default), 1px 1px 0 var(--tg-color-white-default);

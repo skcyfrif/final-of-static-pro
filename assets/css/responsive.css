@@ -9,13 +9,37 @@
 }
 
 @media  only screen and (max-width: 1680px) {
-	
+    .breadcrumb__bg {
+        padding: 55px 0 55px;
+       
+    }
+  
 }
 @media  only screen and (max-width: 1550px) {
+    .sg_about_us  {
+        padding-top: 80px;
+    }
+	
 	
 }
 @media  only screen and (max-width: 1440px) {
-	
+    .about__content-seven .section-title .title {
+        width: 100%;
+    }
+    .about__area-eight {
+        padding-bottom:60px;
+    }
+    .breadcrumb__bg {
+        background-size: cover;
+        background-position: center;
+        padding: 45px 0 47px;
+        position: relative;
+        z-index: 1;
+        padding: 60px 0 45px;
+    }
+    .breadcrumb__area {
+        height: 180px !important;
+    }
 }
 @media  only screen and (max-width: 1366px) {
     .banner-content h2 {
@@ -38,10 +62,23 @@
     .services-content {
         padding: 25px 25px 25px;
     }
+    
 
    
 }	
-@media  only screen and (max-width: 1280px) {			
+@media  only screen and (max-width: 1280px) {	
+    .call-back-area {
+        padding: 70px 0 60px;
+    }
+    .footer-top {
+        padding: 100px 0 23px;
+    }	
+    .shape img {
+        width: 77%;
+    }
+    .services__details-content > .title {
+        font-size: 27px;   
+    }	
 				    
 }
 
@@ -167,7 +204,17 @@
     }
     .cyfrif_team_sect {
         padding-top: 70px;
-    } 	
+    } 
+    .cfp_header_contact {
+        width: 50%;
+    }
+    .sg_about_us {
+        padding-top: 60px;
+    }
+    .call-back-area {
+        padding: 42px 0 32px;
+       
+    }
 }
 
 
@@ -185,6 +232,9 @@
     }
     .blog-post-content .title {
         font-size: 20px;
+    }
+    .shape img {
+        width: 60%;
     }
 }
 
@@ -211,6 +261,9 @@
     }
     .footer-content p {
         width: 100%;
+    }
+    .sg_background_img  {
+        padding-top: 66px !important;
     }
     	
 }
@@ -257,6 +310,15 @@
     .marketing_card_cyftech {
         width: 100%;
     }
+    .breadcrumb__bg {
+        padding: 20px 0 22px !important;
+    }
+    .breadcrumb__content h2 {
+        font-size: 33px !important;
+    }
+    .breadcrumb__content .title {
+        margin-bottom: 10px;
+    }
     
 	
 }
@@ -287,6 +349,10 @@
     .blog-post-bg {
         padding: 50px 0 20px;
     }
+    .breadcrumb__content h2 {
+        font-size: 24px !important;
+    }
+
 }
 @media  only screen and (max-width: 420px) {
     .banner-content p {
@@ -324,15 +390,23 @@
     .team-area {
         padding: 45px 0 30px;
     }
-}
-@media  only screen and (max-width: 380px){
-	.services-bottom-content {
-        margin-top: 5px;
+    .about__area-eight {
+        padding-top: 40px;
+        padding-bottom: 25px;
     }
+    
+   
+
+    
 }
-@media  only screen and (max-width: 360px) {
-	
-}
-@media  only screen and (max-width: 5000px) and (min-width: 768px){
-	
-}
+    @media  only screen and (max-width: 380px){
+        .services-bottom-content {
+            margin-top: 5px;
+        }
+    }
+    @media  only screen and (max-width: 360px) {
+        
+    }
+    @media  only screen and (max-width: 5000px) and (min-width: 768px){
+        
+    }
