@@ -14,9 +14,6 @@
     .sg_about_us {
         padding-top: 80px;
     }
-    .sg_background_img  {
-        display: none;
-    }
 
 
 }
@@ -379,8 +376,20 @@
     .services__details-inner-four {
         margin: 0px 0 0px;
     }
+    .cfp_about_page_left:before {
+        left: -22px;
+    }
+    .shape img {
+        width: 21%;
+    }
+    .Cyfr_p_marg {
+        font-size: 30px !important;
+    }
+    .about__bg {
+        padding: 50px 0;
+       
+    }
 }
-
 
 @media only screen and (max-width: 767px) {
     .cyf_pro_tech_caunter {
@@ -446,6 +455,13 @@
     .breadcrumb__content h2 {
         font-size: 23px !important;
     }
+    .shape img {
+        width: 25% !important;
+    }
+    .cfp_about_page_left:before {
+        left: -17px;
+    }
+    
 
 }
 
@@ -516,13 +532,11 @@
     }
     .sg_abaut_us_box h3 {
         font-size: 23px;
-    
     }
     .services__details-inner-content-two .title {
         font-size: 25px;
     }
     .about__list-box-three h5{
-        
             font-size: 20px; 
     }
     .about__list-box .list-wrap li i {
@@ -630,8 +644,41 @@
         padding: 40px 0 65px;
     }
     .breadcrumb__content h2 {
-        font-size: 20px !important;
+        font-size: 19px !important;
     }
+    .breadcrumb__area {
+        height: 56px !important;
+    }
+    .about__bg {
+        padding: 20px 0;
+    }
+    .Cyfr_p_marg {
+        font-size: 22px !important;
+    }
+    .cfp_about_page_left:before {
+        left: -14px;
+    }
+    .pb-70 {
+        padding-bottom: 25px;
+    }
+   
+    .py-5 {
+        padding-top: 0rem !important;
+        padding-bottom: 0rem !important;
+    } 
+    .cfp_flexible_tittle h1 {
+            font-size: 27px;
+    
+    }  
+    .mb-5 {
+        margin-bottom: 1rem !important;
+    } 
+    .cfp_flexible_tittle {
+            margin-top: 39px;
+    }
+ 
+
+
 
 
     
