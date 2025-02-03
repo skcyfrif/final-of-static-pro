@@ -373,6 +373,9 @@
     .cyf_pro_tech_smallmenu {
         margin-right: 0px !important;
     }
+    .services__details-inner-four {
+        margin: 0px 0 0px;
+    }
 }
 
 
@@ -417,6 +420,10 @@
     .services__details-area {
             padding: 60px 0;
     }
+    .services__details-area {
+        padding: 18px 0;
+    }
+
 
 
 
@@ -429,6 +436,12 @@
 
     .breadcrumb__area {
         margin-top: 81px;
+    }
+    .breadcrumb__area {
+        height: 104px !important;
+    }
+    .breadcrumb__content h2 {
+        font-size: 23px !important;
     }
 
 }
@@ -483,7 +496,36 @@
     .sidebar__widget-title {
         font-size: 16px;
     }
+    .breadcrumb__content h2 {
+        font-size: 18px !important;
+    }
+    .breadcrumb__content .title {
+        margin-bottom: 0px;
+    }
+    .breadcrumb__content h2 {
+        font-size: 20px !important;
+    }
+    .breadcrumb__content .breadcrumb-item {
+        font-size: 14px;
+    }
+    .sg_abaut_us_box h2 {
+        font-size: 24px !important;
+    }
+    .sg_abaut_us_box h3 {
+        font-size: 23px;
     
+    }
+    .services__details-inner-content-two .title {
+        font-size: 25px;
+    }
+    .about__list-box-three h5{
+        
+            font-size: 20px; 
+    }
+    .about__list-box .list-wrap li i {
+        width: 22px;
+        height: 22px;
+    }
 
 
 }
@@ -580,6 +622,9 @@
     }
     .call-back-area {
         padding: 40px 0 65px;
+    }
+    .breadcrumb__content h2 {
+        font-size: 20px !important;
     }
 
 
