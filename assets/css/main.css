@@ -16779,8 +16779,15 @@ a:hover{
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-
- 
 }
+.our_mission_body {
+  padding: 0px !important;
+}
+.mission_section_body {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 
 
