@@ -435,6 +435,9 @@
     .services__details-area {
         padding: 18px 0;
     }
+    .section-title {
+        display: none;
+    }
 
 
 
