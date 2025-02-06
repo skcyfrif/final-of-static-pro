@@ -4,7 +4,7 @@ FROM nginx:alpine
 # Switch to root userjjj
 USER root
 
-# Create the SSL directory inside the container
+# Create the SSL directory inside the containerr
 #RUN mkdir -p /etc/nginx/ssl
 #RUN ls -ld /etc/nginx/ssl
 
