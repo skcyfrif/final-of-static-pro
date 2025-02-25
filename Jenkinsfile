@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        APP_DIR = "/var/www/myapp"
-        REPO_URL = "https://github.com/skcyfrif/final-of-static-pro.git"
+        // APP_DIR = "/var/www/myapp"
+        // REPO_URL = "https://github.com/skcyfrif/final-of-static-pro.git"
     }
 
     stages {
